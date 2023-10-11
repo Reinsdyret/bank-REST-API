@@ -1,4 +1,4 @@
-package com.boot.mnemonicbank.util;
+package com.boot.bank.util;
 
 public class NewTransaction {
 

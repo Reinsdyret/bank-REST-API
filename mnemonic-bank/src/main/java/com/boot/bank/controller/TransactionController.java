@@ -1,4 +1,4 @@
-package com.boot.mnemonicbank.controller;
+package com.boot.bank.controller;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.boot.mnemonicbank.entity.Transaction;
-import com.boot.mnemonicbank.service.TransactionService;
-import com.boot.mnemonicbank.util.NewTransaction;
+import com.boot.bank.entity.Transaction;
+import com.boot.bank.service.TransactionService;
+import com.boot.bank.util.NewTransaction;
 
 @RestController
 @RequestMapping("/api/v1")

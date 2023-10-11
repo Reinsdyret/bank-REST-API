@@ -1,4 +1,4 @@
-package com.boot.mnemonicbank.service;
+package com.boot.bank.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,12 +7,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.boot.mnemonicbank.entity.Account;
-import com.boot.mnemonicbank.entity.Transaction;
-import com.boot.mnemonicbank.repository.AccountRepository;
-import com.boot.mnemonicbank.repository.TransactionRepository;
-import com.boot.mnemonicbank.util.CustomResponseEntity;
-import com.boot.mnemonicbank.util.NewTransaction;
+import com.boot.bank.entity.Account;
+import com.boot.bank.entity.Transaction;
+import com.boot.bank.repository.AccountRepository;
+import com.boot.bank.repository.TransactionRepository;
+import com.boot.bank.util.CustomResponseEntity;
+import com.boot.bank.util.NewTransaction;
 
 @Service
 public class TransactionService {
@@ -37,6 +37,11 @@ public class TransactionService {
 
 	@Transactional
 	public ResponseEntity<?> createTransaction(NewTransaction transaction) {
+		/**
+		 * Creates AND performes the given transaction.
+		 * Attributes not given, such as executedTime etc.. Will be made here
+		 * NOTE: Success will always be true as long as all acounts given exist and account to transfer from has enough funds
+		 */
 		long registeredTime = System.currentTimeMillis();
 		// Get accounts by id.
 		long fromAccountID = transaction.getSourceAccountID();

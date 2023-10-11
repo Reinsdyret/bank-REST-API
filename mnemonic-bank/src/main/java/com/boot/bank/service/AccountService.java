@@ -1,4 +1,4 @@
-package com.boot.mnemonicbank.service;
+package com.boot.bank.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.boot.mnemonicbank.entity.Account;
-import com.boot.mnemonicbank.repository.AccountRepository;
-import com.boot.mnemonicbank.util.CustomResponseEntity;
+import com.boot.bank.entity.Account;
+import com.boot.bank.repository.AccountRepository;
+import com.boot.bank.util.CustomResponseEntity;
 
 @Service
 public class AccountService {

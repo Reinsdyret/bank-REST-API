@@ -1,12 +1,12 @@
-package com.boot.mnemonicbank;
+package com.boot.bank;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MnemonicBankApplication {
+public class BankApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MnemonicBankApplication.class, args);
+		SpringApplication.run(BankApplication.class, args);
 	}
 }

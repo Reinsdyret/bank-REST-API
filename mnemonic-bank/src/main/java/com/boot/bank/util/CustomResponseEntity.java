@@ -1,4 +1,4 @@
-package com.boot.mnemonicbank.util;
+package com.boot.bank.util;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

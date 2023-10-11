@@ -1,10 +1,10 @@
-package com.boot.mnemonicbank;
+package com.boot.bank;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MnemonicBankApplicationTests {
+class BankApplicationTests {
 
 	@Test
 	void contextLoads() {

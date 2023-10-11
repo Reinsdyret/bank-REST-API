@@ -1,4 +1,4 @@
-package com.boot.mnemonicbank.entity;
+package com.boot.bank.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
