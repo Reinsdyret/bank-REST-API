@@ -23,17 +23,27 @@ public class AccountController {
 	}
 	
 	@PutMapping("/account")
-	public ResponseEntity<Account> saveAccount(@RequestBody Account account){
+	public Account saveAccount(@RequestBody Account account){
 		return accountService.saveAccount(account);
 	}
 	
+	@PutMapping("/account/update")
+	public ResponseEntity<?> updateAccount(@RequestBody Account account){
+		return accountService.updateAccount(account.getId(), account);
+	}
+	
 	@GetMapping("/accounts")
-	public ResponseEntity<List<Account>> getAllAccounts(){
+	public List<Account> getAllAccounts(){
 		return accountService.getAllAccounts();
 	}
 	
 	@GetMapping("/account/{id}")
-	public ResponseEntity<Account> getAccountById(@PathVariable Long id){
+	public ResponseEntity<?> getAccountById(@PathVariable Long id){
 		return accountService.getAccountByID(id); 
+	}
+	
+	@PutMapping("/delete/account/{id}")
+	public void deleteAccountById(@PathVariable Long id) {
+		accountService.deleteAccount(id);
 	}
 }

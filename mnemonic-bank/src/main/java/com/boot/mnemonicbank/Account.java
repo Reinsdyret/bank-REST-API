@@ -42,5 +42,11 @@ public class Account {
 		this.availableCash = availableCash;
 	}
 	
+	public void withdraw(double cash) {
+		this.availableCash -= cash;
+	}
 	
+	public void deposit(double cash) {
+		this.availableCash += cash;
+	}
 }

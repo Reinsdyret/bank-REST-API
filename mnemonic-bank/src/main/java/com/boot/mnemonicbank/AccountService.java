@@ -3,9 +3,13 @@ package com.boot.mnemonicbank;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import com.boot.mnemonicbank.util.CustomResponseEntity;
 
 import jakarta.persistence.EntityNotFoundException;
 
@@ -17,29 +21,34 @@ public class AccountService {
 		this.accountRepository = accountRepository;
 	}
 	
-	public ResponseEntity<Account> saveAccount(@RequestBody Account account){
-		Account newAccount = accountRepository.save(account);
-		return ResponseEntity.ok(newAccount);
+	public Account saveAccount(@RequestBody Account account){
+		return accountRepository.save(account);
 	}
 	
-	public ResponseEntity<List<Account>> getAllAccounts(){
-		return ResponseEntity.ok(accountRepository.findAll());
+	public List<Account> getAllAccounts(){
+		return accountRepository.findAll();
 	}
 	
-	public ResponseEntity<Account> getAccountByID(Long id){
+	public ResponseEntity<?> getAccountByID(Long id){
 		Optional<Account> account = accountRepository.findById(id);
 		if(account.isPresent())
 			return ResponseEntity.ok(account.get());
 		else
-			return ResponseEntity.notFound().build();
+			return CustomResponseEntity.accountNotFound(id);
 	}
 	
-	
-	public ResponseEntity<Account> updateAccount(Long id, Account updatedAccount){
+	@Transactional
+	public ResponseEntity<?> updateAccount(Long id, Account updatedAccount){
 		if (id == null) return ResponseEntity.notFound().build();
 		
-		Account existingAccount = accountRepository.findById(id).orElseThrow(
-				() -> new EntityNotFoundException(String.valueOf(id)));
+		Optional<Account> existingAccountOpt = accountRepository.findById(id);
+		Account existingAccount;
+		
+		if(!existingAccountOpt.isPresent()) {
+			return CustomResponseEntity.accountNotFound(id);
+		} else {
+			existingAccount = existingAccountOpt.get(); 
+		}
 		
 		// Update fields
 		existingAccount.setName(updatedAccount.getName());
@@ -50,8 +59,7 @@ public class AccountService {
 		return ResponseEntity.ok(savedAccount);
 	}
 	
-	public ResponseEntity<String> deleteAccount(Long id){
+	public void deleteAccount(Long id){
 		accountRepository.deleteById(id);
-		return ResponseEntity.ok("Account deleted successfully");
 	}
 }

@@ -9,5 +9,4 @@ public class MnemonicBankApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MnemonicBankApplication.class, args);
 	}
-
 }
