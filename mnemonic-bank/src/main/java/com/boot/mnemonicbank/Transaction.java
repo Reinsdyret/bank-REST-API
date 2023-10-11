@@ -2,20 +2,19 @@ package com.boot.mnemonicbank;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "transaction")
 public class Transaction {
-	
+
+	@Id
 	private long id;
-	
+
 	@Column(nullable = false)
 	private long registeredTime;
-	
+
 	@Column(nullable = false)
 	private long executedTime;
 
@@ -27,9 +26,9 @@ public class Transaction {
 
 	private long sourceAccountID;
 
-	
+
 	private long destinationAccountID;
-	
+
 
 	public Transaction(long registeredTime, long executedTime, boolean success, double cashAmount, long sourceAccountID, long destinationAccountID) {
 		this.registeredTime = registeredTime;
@@ -64,5 +63,5 @@ public class Transaction {
 		return destinationAccountID;
 	}
 
-	
+
 }

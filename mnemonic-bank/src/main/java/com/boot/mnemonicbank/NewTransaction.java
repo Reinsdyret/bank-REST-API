@@ -5,9 +5,9 @@ public class NewTransaction {
 	private double cashAmount;
 
 	private long sourceAccountID;
-	
+
 	private long destinationAccountID;
-	
+
 	public NewTransaction(double cashAmount, long sourceAccountID, long destinationAccountID) {
 		this.cashAmount = cashAmount;
 		this.sourceAccountID = sourceAccountID;

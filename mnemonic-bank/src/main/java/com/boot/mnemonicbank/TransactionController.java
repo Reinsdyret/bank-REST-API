@@ -14,20 +14,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class TransactionController {
 
 	private final TransactionService transactionService;
-	
+
 	public TransactionController(TransactionService transactionService) {
 		super();
 		this.transactionService = transactionService;
 	}
-	
-	
+
+
 	@PutMapping("/transaction")
 	public ResponseEntity<?> saveTransaction(@RequestBody NewTransaction transaction){
-		
+
 		// Return saved transaction
 		return transactionService.createTransaction(transaction);
 	}
-	 
+
 	@GetMapping("/transactions")
 	public List<Transaction> getAllTransactions(){
 		return transactionService.getAllTransactions();

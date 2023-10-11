@@ -6,7 +6,7 @@ public class ApplicationException{
 
     private final String message;
     private final HttpStatus httpStatus;
-	
+
     public ApplicationException(String message, HttpStatus httpStatus) {
 		super();
 		this.message = message;
@@ -20,6 +20,6 @@ public class ApplicationException{
 	public HttpStatus getHttpStatus() {
 		return httpStatus;
 	}
-    
-    
+
+
 }

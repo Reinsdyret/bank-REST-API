@@ -16,32 +16,32 @@ public class AccountController {
 
 	private final AccountService accountService;
 	//private final TransactionService transactionService;
-	
+
 	public AccountController(AccountService accountService, TransactionService transactionService) {
 		this.accountService = accountService;
 		//this.transactionService = transactionService;
 	}
-	
+
 	@PutMapping("/account")
 	public Account saveAccount(@RequestBody Account account){
 		return accountService.saveAccount(account);
 	}
-	
+
 	@PutMapping("/account/update")
 	public ResponseEntity<?> updateAccount(@RequestBody Account account){
 		return accountService.updateAccount(account.getId(), account);
 	}
-	
+
 	@GetMapping("/accounts")
 	public List<Account> getAllAccounts(){
 		return accountService.getAllAccounts();
 	}
-	
+
 	@GetMapping("/account/{id}")
 	public ResponseEntity<?> getAccountById(@PathVariable Long id){
-		return accountService.getAccountByID(id); 
+		return accountService.getAccountByID(id);
 	}
-	
+
 	@PutMapping("/delete/account/{id}")
 	public void deleteAccountById(@PathVariable Long id) {
 		accountService.deleteAccount(id);
