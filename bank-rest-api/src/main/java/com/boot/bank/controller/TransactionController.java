@@ -3,6 +3,7 @@ package com.boot.bank.controller;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,5 +42,10 @@ public class TransactionController {
 	@GetMapping("/transactions/{id}")
 	public ResponseEntity<?> getTransactionById(@PathVariable Long id) {
 		return transactionService.getTransactionById(id);
+	}
+	
+	@DeleteMapping("/transactions/{id}")
+	public void deleteTransactionById(@PathVariable Long id){
+		transactionService.deleteTransaction(id);
 	}
 }

@@ -28,12 +28,12 @@ public class AccountController {
 		//this.transactionService = transactionService;
 	}
 
-	@PostMapping("/account")
+	@PostMapping("/accounts")
 	public Account saveAccount(@RequestBody Account account){
 		return accountService.saveAccount(account);
 	}
 
-	@PutMapping("/account/{id}")
+	@PutMapping("/accounts/{id}")
 	public ResponseEntity<?> updateAccount(@RequestBody Account account, @PathVariable Long id){
 		return accountService.updateAccount(id, account);
 	}
@@ -43,12 +43,12 @@ public class AccountController {
 		return accountService.getAllAccounts();
 	}
 
-	@GetMapping("/account/{id}")
+	@GetMapping("/accounts/{id}")
 	public ResponseEntity<?> getAccountById(@PathVariable Long id){
 		return accountService.getAccountByID(id);
 	}
 
-	@DeleteMapping("/delete/account/{id}")
+	@DeleteMapping("/accounts/{id}")
 	public void deleteAccountById(@PathVariable Long id) {
 		accountService.deleteAccount(id);
 	}

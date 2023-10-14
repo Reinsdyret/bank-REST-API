@@ -48,6 +48,10 @@ public class Transaction {
 	}
 	
 	public Transaction() {}
+	
+	public long getId() {
+		return id;
+	}
 
 	public long getRegisteredTime() {
 		return registeredTime;
