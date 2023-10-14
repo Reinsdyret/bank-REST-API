@@ -2,6 +2,8 @@ package com.boot.bank.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -10,6 +12,7 @@ import jakarta.persistence.Table;
 public class Transaction {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	@Column(nullable = false)
@@ -30,6 +33,11 @@ public class Transaction {
 	private long destinationAccountID;
 
 
+	public Transaction(long id, long registeredTime, long executedTime, boolean success, double cashAmount, long sourceAccountID, long destinationAccountID) {
+		this(registeredTime, executedTime, success,cashAmount, sourceAccountID, destinationAccountID);
+		this.id = id;
+	}
+	
 	public Transaction(long registeredTime, long executedTime, boolean success, double cashAmount, long sourceAccountID, long destinationAccountID) {
 		this.registeredTime = registeredTime;
 		this.executedTime = executedTime;
@@ -38,6 +46,8 @@ public class Transaction {
 		this.sourceAccountID = sourceAccountID;
 		this.destinationAccountID = destinationAccountID;
 	}
+	
+	public Transaction() {}
 
 	public long getRegisteredTime() {
 		return registeredTime;

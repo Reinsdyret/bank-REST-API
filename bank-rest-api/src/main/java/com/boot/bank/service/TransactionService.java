@@ -34,6 +34,14 @@ public class TransactionService {
 	public void deleteTransaction(Long id){
 		transactionRepository.deleteById(id); // If fails then it fails silent
 	}
+	
+	public ResponseEntity<?> getTransactionById(Long id){
+		Optional<Transaction> trans = transactionRepository.findById(id);
+		
+		if(trans.isPresent()) return ResponseEntity.ok(trans.get());
+		
+		return CustomResponseEntity.transactionNotFound(id);
+	}
 
 	@Transactional
 	public ResponseEntity<?> createTransaction(NewTransaction transaction) {

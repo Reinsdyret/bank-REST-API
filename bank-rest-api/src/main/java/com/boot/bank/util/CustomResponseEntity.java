@@ -13,4 +13,9 @@ public class CustomResponseEntity{
 	public static ResponseEntity<?> insufficientFunds(long accountID) {
 		return new ResponseEntity<>(new ApplicationException("Account " + String.valueOf(accountID) + " does not have enough funds", HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
 	}
+
+
+	public static ResponseEntity<?> transactionNotFound(Long id) {
+		return new ResponseEntity<>(new ApplicationException("Transaction " + String.valueOf(id) + " does not exist", HttpStatus.BAD_REQUEST), HttpStatus.BAD_REQUEST);
+	}
 }
