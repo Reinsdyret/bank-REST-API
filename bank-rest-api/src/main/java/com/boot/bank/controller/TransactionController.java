@@ -31,7 +31,7 @@ public class TransactionController {
 	public ResponseEntity<?> saveTransaction(@RequestBody NewTransaction transaction){
 
 		// Return saved transaction
-		return transactionService.createTransaction(transaction);
+		return transactionService.saveTransaction(transaction);
 	}
 
 	@GetMapping("/transactions")

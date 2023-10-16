@@ -44,11 +44,12 @@ public class TransactionService {
 	}
 
 	@Transactional
-	public ResponseEntity<?> createTransaction(NewTransaction transaction) {
+	public ResponseEntity<?> saveTransaction(NewTransaction transaction) {
 		/**
-		 * Creates AND performes the given transaction.
+		 * Creates, performs and saves the given transaction.
 		 * Attributes not given, such as executedTime etc.. Will be made here
 		 * NOTE: Success will always be true as long as all acounts given exist and account to transfer from has enough funds
+		 * NOTE: Is also transactional so any exceptions will rollback
 		 */
 		long registeredTime = System.currentTimeMillis();
 		// Get accounts by id.
@@ -79,7 +80,7 @@ public class TransactionService {
 
 		// Withdraw amount from accont dont save yet as something can go wrong with deposit
 		fromAccount.withdraw(amount);
-
+		
 		// Deposit amount to account
 		toAccount.deposit(amount);
 
@@ -89,8 +90,9 @@ public class TransactionService {
 		boolean success = true;
 
 		Transaction newTransaction = new Transaction(registeredTime, executedTime, success, amount, fromAccountID, toAccountID);
-
-		return saveTransaction(newTransaction);
+		
+		Transaction savedTransaction = transactionRepository.save(newTransaction);
+		return ResponseEntity.ok(savedTransaction);
 	}
 
 	@Transactional
@@ -101,13 +103,6 @@ public class TransactionService {
 		 */
 		accountRepository.saveAll(List.of(fromAccount, toAccount));
 		return System.currentTimeMillis();
-	}
-
-	@Transactional
-	private ResponseEntity<?> saveTransaction(Transaction transaction){
-
-		Transaction newTransaction = transactionRepository.save(transaction);
-		return ResponseEntity.ok(newTransaction);
 	}
 
 }
